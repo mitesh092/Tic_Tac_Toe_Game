@@ -21,10 +21,12 @@ const Win_pattern = [
 boxes.forEach((box) => {
     box.addEventListener("click",() =>{
         if(turn0){
-            box.innerText = "O";
+            box.innerText = "O"
+            box.classList.add("player-X");
             turn0 = false;
         }else{
             box.innerText = "X";
+            box.classList.add("player-Y");
             turn0 = true;
         }
         box.disabled = true;
@@ -56,7 +58,14 @@ const showWinner = (winner) =>{
     
 };
 
-const checkWinner = () =>{
+const DrawMatch = () => {
+    msgConatiner.classList.remove("hide");
+    msg.innerText = "Opps ! Match Draw";
+
+};
+
+const checkWinner = () =>{  
+    let count = 0;
     for(let ptn of Win_pattern){
         let pos1 = boxes[ptn[0]].innerText;
         let pos2 = boxes[ptn[1]].innerText;
@@ -64,9 +73,17 @@ const checkWinner = () =>{
         if(pos1 != "" && pos2 != "" && pos3 != ""){
             if(pos1 === pos2 && pos2 === pos3){
                 showWinner(pos1);
+            }else{
+                count++;
             }
+            
         }
-    } 
+    }
+    if(count >= 8){
+        DrawMatch();
+
+    }
+    
 };
 
 new_game_btn.addEventListener("click", reset_NEW_btn);

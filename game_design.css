@@ -69,3 +69,12 @@ body{
 .hide{
     display: none;
 }
+
+.player-X{
+    
+    color: #050C9C;
+}
+.player-Y{
+    color: #fd8505;
+}
+
